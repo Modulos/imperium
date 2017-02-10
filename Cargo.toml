@@ -1,6 +1,6 @@
 [package]
-name = "risiko"
+name = "imperium"
 version = "0.1.0"
-authors = ["Albert <noe.thalheim@gmail.com>"]
+authors = ["Modulos <noe.thalheim@gmail.com>"]
 
 [dependencies]
