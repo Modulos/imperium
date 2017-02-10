@@ -1,5 +1,5 @@
-extern crate risiko;
-use risiko::*;
+extern crate imperium;
+use imperium::*;
 
 struct Human {
 }
