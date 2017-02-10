@@ -1,18 +1,31 @@
 extern crate imperium;
 use imperium::*;
+use std::cmp::{PartialEq, Eq};
+
 
 struct Human {
+	id: u8,
 }
 
 impl Human {
 	fn new() -> Human {
-		Human {}
+		Human {
+			id : 0,	
+		}
 	}
 }
 
+impl Eq for Human {}
+impl PartialEq for Human {
+	fn eq(&self, other: &Human) -> bool {
+		self.id == other.id
+	}
+}
+
+
 impl Player for Human {
 	fn action<'a>(&self, map: &'a Map<'a, Self>) -> Action<'a, Self> {
-		Attack(map.random().unwrap(), map.random().unwrap())
+		Action::Attack(map.random().unwrap(), map.random().unwrap())
 	}
 }
 

@@ -50,15 +50,28 @@ impl<'a, P> Map<'a, P> where P: 'a + Player {
 		Map {fields: Vec::new()}
 	}
 	
-	fn apply(&self, action: Action<P>) -> Result<(),()> {
-		Ok(())
+	fn apply(&self, action: Action<P>) -> Result<Map<'a, P>,()> {
+		match action {
+			Action::Attack(a, b) => {
+				let attacker = a.owner.unwrap();
+				let defender = b.owner.unwrap();
+				if attacker == defender {
+					return Err(());
+				}
+				let mut map = self.clone();
+
+			},
+			_ => {}
+			
+		}
+		Err(())
 	}
 	pub fn random(&'a self) -> Option<&'a Field<'a, P>> {
 		self.fields.get(0)
 	}
 }
 
-pub trait Player : std::marker::Sized {
+pub trait Player : std::marker::Sized + Eq {
 	fn action<'a>(&self, map: &'a Map<'a, Self>) -> Action<'a, Self>;
 }
 
